@@ -51,3 +51,18 @@ code {
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'pop-regular';
+  src: url('/src/assets/fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'pop-medium';
+  src: url('/src/assets/fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'pop-semibold';
+  src: url('/src/assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+}

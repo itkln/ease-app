@@ -1,9 +1,7 @@
-const Account = () => {
-    return (
-        <div className="account">
-            Account
-        </div>
-    )
-}
+import React from "react"
 
-export default Account;
+export default function Account() {
+  return (
+    <div>Account</div>
+  )
+}

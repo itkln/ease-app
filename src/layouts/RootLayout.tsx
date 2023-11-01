@@ -1,12 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
-import easeWallet from '../assets/images/easeWallet.svg'
+import easeWallet from '../assets/images/easeLedger.svg'
 import Container from "../components/Container";
 
 const RootLayout = () => {
     return (
         <div className="root-layout">
+            <header className="bg-[#1A242D]">
             <Container>
-                <header className="cardview-header py-2 flex justify-between items-center text-[#1C2025]">
+                <div className="cardview-header py-2 flex justify-between items-center bg text-white">
                     <div className="cardview-header__logo">
                         <a href="/"><img src={easeWallet} alt="easeWallet"/></a>
                     </div>
@@ -26,10 +27,10 @@ const RootLayout = () => {
                     <div className="carview-header__exit text-xs hover:text-[#9B9C9F] ease-in-out duration-200">
                         <a href="/">Log out</a>
                     </div>
-                </header>
-
-                <Outlet />
+                </div>
             </Container>
+            </header>
+            <Outlet />
         </div>
     )
 }
