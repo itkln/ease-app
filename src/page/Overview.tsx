@@ -3,6 +3,7 @@ import LedgerManager from "../components/LedgerManager";
 import CategoryManager from "../components/categories/CategoryManager";
 import { useState } from "react";
 import useCategory, { Category } from "../hooks/useCategory";
+import { categories, onCategoryCreate, onCategoryDelete } from "../signals/signalCategory";
 
 export const categoryList: Category[] = [
     { id: 1, title: "Groceries", amount: 421.50 },
@@ -12,9 +13,7 @@ export const categoryList: Category[] = [
 ]
 
 export default function Overview() {
-    const {categories, onCategoryCreate, onCategoryDelete} = useCategory(categoryList);
-
-    const categoryTitles = categories.map(category => category.title);
+    const categoryTitles = categories.value.map(category => category.title);
 
     // const onTransactionCreate = (selectedCategory: string, amount: string) => {
     //     // Parse the amount as a number
@@ -40,9 +39,9 @@ export default function Overview() {
                 <div className="overview-content__blocks flex justify-between space-x-8 font-m">
                     <LedgerManager categories={categoryTitles}/>
                     <CategoryManager 
-                    categoryList={categories}
-                    addCategory={onCategoryCreate}
-                    deleteCategory={onCategoryDelete}
+                    categories={categories.value}
+                    onCategoryCreate={onCategoryCreate}
+                    onCategoryDelete={onCategoryDelete}
                     />
                     {/* <RecentTransactionsManager /> */}
                 </div>
