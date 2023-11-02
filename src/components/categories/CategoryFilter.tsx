@@ -1,3 +1,4 @@
+import { filters } from "../../signals/signalFilter";
 import Label from "../Label";
 import Select from "../Select";
 
@@ -6,15 +7,14 @@ const months: string[] = Array.from({ length: 12 }, (_, i) => {
     return date.toLocaleString(undefined, { month: "long" });
 });
 
-const payments: string[] = ["Monthly payments", "Other payments", "Savings"]
-
 export default function CategoryFilter() {
+    const filterNames = filters.value.map(filter => filter.name)
     return (
         <>
             <div className="category-filter w-full flex space-x-5">
                 <div className="category-filter__payments w-3/5">
-                    <Label name={"Operation"} />
-                    <Select id={"payments"} name={"payments"} labelName={"Payment"} options={payments} title="Select filter" />
+                    <Label name={"Filter"} />
+                    <Select id={"filter"} name={"filter"} labelName={"Filter"} options={filterNames} title="Select filter" />
                 </div>
                 <div className="category-filter__month w-2/5">
                     <Label name={"Month"} />

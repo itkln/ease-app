@@ -6,8 +6,12 @@ export type TransactionResponseType = {
     createdAt: string
 }
 
-export type TransactionCategoriesResponseType = {
+export type TransactionCategoryResponseType = {
     id: number,
     title: string,
     amount: number,
+}
+
+export type TransactionCategoriesResponseType = {
+    categories: TransactionCategoryResponseType[]
 }

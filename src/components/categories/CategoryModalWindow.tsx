@@ -3,7 +3,7 @@ import CategorySettings from './CategorySettings';
 
 interface CategoryModalWindowProps {
   onModalWindowClose: () => void;
-  onCategoryCreate: (title: string) => void;
+  onCategoryCreate: (title: string, filter: string) => void;
 }
 
 export default function CategoryModalWindow(props: CategoryModalWindowProps) {

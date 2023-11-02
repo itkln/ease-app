@@ -1,8 +1,9 @@
 import { signal } from "@preact/signals-react";
 import { CategoryType } from "../types/CategoryType";
+import { categoriesAPI, transactionsAPI } from "../api/services/api";
 
 function initCategories(): CategoryType[] {
-    // TODO: get categories from DB
+    // const response = transactionsAPI.getTransactionCategories()
 
     const categories: CategoryType[] = [
         { id: 1, title: "Groceries", amount: 421.50 },
@@ -16,7 +17,8 @@ function initCategories(): CategoryType[] {
 
 export const categories = signal(initCategories())
 
-export function onCategoryCreate(title: string) {
+export function onCategoryCreate(title: string, filter: string) {
+
     // TODO: add category to DB and get response with ID
     const newCategory: CategoryType = {
         id: 5,
@@ -32,3 +34,21 @@ export function onCategoryDelete(id: number) {
     const newCategories = categories.value.filter(c => c.id !== id)
     categories.value = newCategories
 }
+
+// const onTransactionCreate = (selectedCategory: string, amount: string) => {
+//     // Parse the amount as a number
+//     const amountValue = parseFloat(amount);
+
+//     if (!isNaN(amountValue)) {
+//         const updatedCategories = categories
+//         .map(category => {
+//             if (category.title === selectedCategory) {
+//                 const newAmount = category.amount + amountValue; // Use the parsed amount
+//                 return { ...category, amount: newAmount };
+//             }
+//             return category;
+//         });
+
+//         setCategories(updatedCategories);
+//     }
+// }

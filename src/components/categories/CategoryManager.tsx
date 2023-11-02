@@ -7,7 +7,7 @@ import CategoryModalWindow from './CategoryModalWindow'
 
 interface CategoryManagerProps {
     categories: Array<CategoryType>
-    onCategoryCreate: (title: string) => void
+    onCategoryCreate: (title: string, filter: string) => void
     onCategoryDelete: (id: number) => void
 }
 
