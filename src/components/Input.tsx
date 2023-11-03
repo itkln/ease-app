@@ -13,7 +13,7 @@ interface InputProps {
 export default function Input(props: InputProps) {
 
   const textStyles = "w-full px-5 py-3 rounded-[12px] border-[1.5px] border-[#EDEEF1] bg-white outline-none focus:border-[#3B7EDD] transition-all ease-in-out duration-500";
-  const checkboxStyles = "w-4 h-4 text-blue-600 bg-red";
+  const checkboxStyles = "w-5 h-5 text-blue-600 bg-red";
   const allStyles = `${textStyles} ${props.userStyles}`
 
   return (
