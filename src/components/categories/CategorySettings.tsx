@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { useSignal } from '@preact/signals-react';
 import Input from '../Input';
 import Label from '../Label';
 import Button from '../Button';
-import { filters } from '../../signals/signalFilter';
 import { FilterType } from '../../types/FilterType';
 
 const filterName = "Filter";
@@ -13,16 +11,17 @@ const titleName = "Title";
 interface CategorySettingsProps {
   onModalWindowClose: () => void;
   onCategoryCreate: (title: string, filter: string) => void;
+  filters: FilterType[]
 }
 
 export default function CategorySettings(props: CategorySettingsProps) {
-  const title = useSignal('');
-  const filter = useSignal('');
-  const isValidate = useSignal(true);
+  const [title, setTitle] = useState('');
+  const [filter, setFilter] = useState('');
+  const [isValidate, setIsValidate] = useState(true);
   const alertMessage = 'Please fill out the required fields.';
 
   const validateInput = () => {
-    isValidate.value = title.value !== '' && filter.value !== '';
+    setIsValidate(title !== '' && filter !== '');
   };
 
   return (
@@ -36,7 +35,7 @@ export default function CategorySettings(props: CategorySettingsProps) {
         </div>
         <div className="category-settings__content flex justify-between my-4 space-x-4">
           <div className="category-settings__content-data flex-col space-y-5 w-full">
-            {!isValidate.value && (
+            {!isValidate && (
               <div className="content-data__error-message p-3 bg-red-200 rounded-md text-red-500">
                 {alertMessage}
               </div>
@@ -44,8 +43,8 @@ export default function CategorySettings(props: CategorySettingsProps) {
             <div className="content-data__title">
               <Label name={titleName} />
               <Input
-                value={title.value}
-                onChange={(e) => (title.value = e.currentTarget.value)}
+                value={title}
+                onChange={(e) => setTitle(e.currentTarget.value)}
                 type="text"
                 name="title"
                 id="title"
@@ -53,12 +52,12 @@ export default function CategorySettings(props: CategorySettingsProps) {
             </div>
             <div className="content-data__filter">
               <Label name={filterName} />
-              {filters.value.map((value: FilterType, id: number) => (
+              {props.filters.map((value: FilterType, id: number) => (
                 <div key={id} className='flex gap-2'>
                   <Input
                     value={value.name}
-                    checked={filter.value === value.name}
-                    onChange={(e) => (filter.value = e.currentTarget.value)}
+                    checked={filter === value.name}
+                    onChange={(e) => setFilter(e.currentTarget.value)}
                     type="checkbox"
                     name={value.name}
                     id="name"
@@ -73,8 +72,8 @@ export default function CategorySettings(props: CategorySettingsProps) {
           <Button
             onClick={() => {
               validateInput();
-              if (isValidate.value) {
-                props.onCategoryCreate(title.value, filter.value);
+              if (isValidate) {
+                props.onCategoryCreate(title, filter);
                 props.onModalWindowClose();
               }
             }}

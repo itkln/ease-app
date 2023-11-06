@@ -8,8 +8,9 @@ export type TransactionResponseType = {
 
 export type TransactionCategoryResponseType = {
     id: number,
-    title: string,
+    category_name: string,
     amount: number,
+    createdAt: string,
 }
 
 export type TransactionCategoriesResponseType = {

@@ -1,10 +1,9 @@
-import React from 'react'
 import Ledger from './Ledger'
 import TransactionForm from './TransactionForm'
-import { hasFormSubmit } from '@testing-library/user-event/dist/utils'
 
 interface LedgerManagerProps {
-  categories: Array<string>
+  categoryTitles: Array<string>
+  operationNames: Array<string>
   onTransactionCreate?: any;
 }
 
@@ -24,7 +23,7 @@ export default function LedgerManager(props: LedgerManagerProps) {
             <button className="transaction-controls-send py-3 w-full rounded-[18px]">Send</button>
           </div>
         </div>
-        <TransactionForm categoryTitles={props.categories} onTransactionCreate={props.onTransactionCreate} />
+        <TransactionForm categoryTitles={props.categoryTitles} operationNames={props.operationNames} onTransactionCreate={props.onTransactionCreate} />
       </div>
     </div>
   )
